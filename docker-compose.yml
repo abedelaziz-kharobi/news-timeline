@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: abedelazizkharobi/news-mysql
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: urgentNewsDB
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    image: abedelazizkharobi/news-backend
+    container_name: backend
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: rootpassword
+      MYSQL_DB: urgentNewsDB
+    ports:
+      - "5000:5000"
+
+  frontend:
+    image: abedelazizkharobi/news-frontend
+    container_name: frontend
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
