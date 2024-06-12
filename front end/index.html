@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Timeline</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <svg display="none">
+        <symbol id="arrow">
+            <polyline points="7 10,12 15,17 10" fill="none" stroke="currentcolor" stroke-linecap="round"
+                stroke-linejoin="round" stroke-width="2" />
+        </symbol>
+    </svg>
+
+    <h1>News Timeline</h1>
+
+    <div id="timeline" class="timeline">
+        <div class="btn-group">
+            <button class="btn" type="button" data-action="expand">Expand All</button>
+            <button class="btn" type="button" data-action="collapse">Collapse All</button>
+        </div>
+
+        <div class="timeline__item"></div>
+
+        <script src="script.js"></script>
+</body>
+
+</html>
